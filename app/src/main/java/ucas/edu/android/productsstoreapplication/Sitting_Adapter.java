@@ -1,5 +1,6 @@
 package ucas.edu.android.productsstoreapplication;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,21 +39,21 @@ public class Sitting_Adapter extends RecyclerView.Adapter<Sitting_Adapter.Sittin
 
     @Override
     public void onBindViewHolder(@NonNull Sitting_viewhalder holder, int position) {
-        if (holder.getAdapterPosition()>last_position && position%2==0 ){
-            Animation animation = AnimationUtils.loadAnimation(viewGroup.getContext() , R.anim.animation) ;
-            ((Sitting_viewhalder)holder).itemView .startAnimation(animation);
-            last_position = holder.getAdapterPosition() ;
+        int adapterPosition = holder.getAdapterPosition(); // Retrieve the adapter position
+        if (adapterPosition > last_position && position % 2 == 0) {
+            Animation animation = AnimationUtils.loadAnimation(viewGroup.getContext(), R.anim.animation);
+            ((Sitting_viewhalder) holder).itemView.startAnimation(animation);
+            last_position = adapterPosition;
+        } else if (adapterPosition > last_position && position % 2 != 0) {
+            Animation animation = AnimationUtils.loadAnimation(viewGroup.getContext(), R.anim.animation2);
+            ((Sitting_viewhalder) holder).itemView.startAnimation(animation);
+            last_position = adapterPosition;
         }
-        else if (holder.getAdapterPosition()>last_position && position%2!=0 ){
-            Animation animation = AnimationUtils.loadAnimation(viewGroup.getContext() , R.anim.animation2) ;
-            ((Sitting_viewhalder)holder).itemView .startAnimation(animation);
-            last_position = holder.getAdapterPosition() ;
-        }
-        Sitting_objects obj = data.get(position) ;
+        Sitting_objects obj = data.get(adapterPosition);
         holder.textView.setText(obj.sittin_type);
         holder.imageView.setImageResource(obj.img_res);
 
-        this.position = position ;
+        this.position = adapterPosition;
     }
 
     @Override

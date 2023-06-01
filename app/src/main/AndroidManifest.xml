@@ -12,6 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProductsStoreApplication"
         tools:targetApi="31">
+        <activity android:name="ucas.edu.android.productsstoreapplication.Last_saleActivity" />
 
         <activity
             android:name=".AddNew_ItemActivity"
