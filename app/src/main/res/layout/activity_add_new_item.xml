@@ -88,7 +88,8 @@
             android:paddingRight="15dp"
             android:paddingBottom="20dp"
             android:scaleType="centerInside"
-            android:src="@drawable/ic_cloche" />
+            android:src="@drawable/ic_cloche"
+            tools:ignore="SpeakableTextPresentCheck" />
 
         <EditText
             android:id="@+id/add_newItem_et_product_name"
@@ -161,36 +162,38 @@
             android:orientation="horizontal"
             android:gravity="center"
             >
+
             <RadioButton
                 android:id="@+id/add_newItem_radio_cash"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/cash"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:layout_marginRight="25dp"
                 android:layout_marginLeft="25dp"
-                android:textColor="@color/my_black"
-                android:fontFamily="@font/app_font_medium"
+                android:layout_marginRight="25dp"
+                android:layout_weight="1"
                 android:background="@drawable/sitting_img_background"
+                android:fontFamily="@font/app_font_medium"
+                android:gravity="center"
                 android:paddingTop="3dp"
                 android:paddingBottom="3dp"
-                />
+                android:text="@string/cash"
+                android:textColor="@color/my_black"
+                tools:ignore="TouchTargetSizeCheck" />
+
             <RadioButton
                 android:id="@+id/add_newItem_radio_installment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/installments"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:layout_marginRight="25dp"
                 android:layout_marginLeft="25dp"
-                android:textColor="@color/my_black"
-                android:fontFamily="@font/app_font_medium"
+                android:layout_marginRight="25dp"
+                android:layout_weight="1"
                 android:background="@drawable/sitting_img_background"
+                android:fontFamily="@font/app_font_medium"
+                android:gravity="center"
                 android:paddingTop="3dp"
                 android:paddingBottom="3dp"
-                />
+                android:text="@string/installments"
+                android:textColor="@color/my_black"
+                tools:ignore="TouchTargetSizeCheck" />
         </RadioGroup>
 
     </LinearLayout>
@@ -222,14 +225,14 @@
         android:id="@+id/btn_go_home"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:background="@drawable/btn_go_home_background"
+        android:padding="15dp"
+        android:src="@drawable/ic_home"
+        android:tint="@color/my_white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/guideline_horz_0.75"
-        android:src="@drawable/ic_home"
-        android:tint="@color/my_white"
-        android:background="@drawable/btn_go_home_background"
-        android:padding="15dp"
-        android:layout_margin="20dp"
-        tools:ignore="UseAppTint" />
+        tools:ignore="UseAppTint,SpeakableTextPresentCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
