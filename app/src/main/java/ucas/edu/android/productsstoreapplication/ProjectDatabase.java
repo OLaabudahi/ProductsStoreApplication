@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.strictmode.SqliteObjectLeakedViolation;
 
+import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 
 import java.util.ArrayList;
@@ -242,20 +243,11 @@ public class ProjectDatabase extends SQLiteOpenHelper {
         double sum_of_sales =0;
 
         if (cr.moveToFirst()){
-
-
-
             sum_of_sales = cr.getDouble(0) ;
 
             cr.close();
         }
         return sum_of_sales ;
     }
-
-
-
-
-
-
 }
 

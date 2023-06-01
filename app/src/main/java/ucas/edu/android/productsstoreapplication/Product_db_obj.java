@@ -14,6 +14,7 @@ public class Product_db_obj implements Serializable {
     public static final int TYPE_CASH = 1 ;
     public static final int TYPE_INSTALLMENT = 2 ;
 
+
     public Product_db_obj(String product_name, double product_price, int product_paying_type) {
         this.product_name = product_name;
         this.product_price = product_price;

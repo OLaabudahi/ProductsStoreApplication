@@ -113,7 +113,7 @@ public class Product_detailsActivity extends AppCompatActivity {
             }
         }
         else {
-            img_productImage.setImageResource(R.drawable.ic_pizza);
+            img_productImage.setImageResource(R.drawable.ic_cloche);
         }
 
 

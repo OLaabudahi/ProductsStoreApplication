@@ -1,5 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="app_name">Final_Project</string>
+    <string name="app_name">Our Restaurant</string>
     <string name="splash_text1">انت مش انت</string>
     <string name="splash_text2">و انت جعان ⊙.☉</string>
     <string name="food_name">اسم الصنف</string>

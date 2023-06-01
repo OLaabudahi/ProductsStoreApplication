@@ -1,6 +1,5 @@
 package ucas.edu.android.productsstoreapplication;
 
-
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
