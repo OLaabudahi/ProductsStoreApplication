@@ -1,6 +1,5 @@
 package ucas.edu.android.productsstoreapplication;
 
-
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
@@ -22,7 +21,6 @@ public class Splash_screen extends AppCompatActivity {
         setContentView(R.layout.activity_splash_screen);
 
         SharedPreferences DefultPrefernce = PreferenceManager.getDefaultSharedPreferences(this) ;
-        // SharedPreferences.Editor DF_Editor = DefultPrefernce.edit() ;
 
         isSigned_intent = new Intent() ;
 

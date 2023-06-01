@@ -1,7 +1,5 @@
 package ucas.edu.android.productsstoreapplication;
 
-
-
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;

@@ -1,6 +1,4 @@
 package ucas.edu.android.productsstoreapplication;
-
-
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -58,8 +56,6 @@ public class SittingActivity extends AppCompatActivity {
         SharedPreferences DefultPrefernce = PreferenceManager.getDefaultSharedPreferences(this) ;
         SharedPreferences.Editor DF_Editor = DefultPrefernce.edit() ;
 
-
-
         recyclerView = findViewById(R.id.sitting_recyclerview) ;
         sitting_btn_sign_out = findViewById(R.id.sitting_btn_sign_out) ;
         tv_user_fullname=findViewById(R.id.sitting_tv_account_name) ;
@@ -113,7 +109,6 @@ public class SittingActivity extends AppCompatActivity {
             }
         }
 
-
         Sitting_Adapter adapter = new Sitting_Adapter(data) ;
 
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this , 1 ) ;
@@ -166,9 +161,7 @@ public class SittingActivity extends AppCompatActivity {
                 DF_Editor.apply();
             }
         });
-
     }
-
     @Override
     public void onBackPressed() {
         super.onBackPressed();

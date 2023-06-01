@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class Product_db_obj implements Serializable {
 
-   // int product_id = 0 ;
+
     String product_name ;
     double product_price ;
     String product_uri ;
