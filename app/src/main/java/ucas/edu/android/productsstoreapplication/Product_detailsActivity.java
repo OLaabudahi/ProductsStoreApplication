@@ -32,22 +32,24 @@ import java.util.ArrayList;
 
 public class Product_detailsActivity extends AppCompatActivity {
 
-    ImageButton btn_go_home ;
-    ImageButton btn_plus ;
-    ImageButton btn_minus ;
+    ImageButton btn_go_home;
+    ImageButton btn_plus;
+    ImageButton btn_minus;
 
-    TextView tv_quantity_num  , tv_product_name, tv_single_price, tv_total_price,tv_product_description , tv_product_payingType ;
+    TextView tv_quantity_num, tv_product_name, tv_single_price, tv_total_price, tv_product_description, tv_product_payingType;
 
-    ImageView img_productImage ;
+    ImageView img_productImage;
 
-    Button btn_buy ;
+    Button btn_buy;
 
-    ProjectDatabase db ;
+    ProjectDatabase db;
 
-    Toast tst_buy_pressed ;
+    Toast tst_buy_pressed;
 
-    public static MediaPlayer mp_cash ;
-    public static final String SERIALIZABLE_KEY = "serializable_key" ;
+    public static MediaPlayer mp_cash;
+    public static final String SERIALIZABLE_KEY = "serializable_key";
+
+    private static final int MAX_ORDER_QUANTITY = 20;
 
     @SuppressLint("SetTextI18n")
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -56,73 +58,68 @@ public class Product_detailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_details);
 
-        btn_go_home = findViewById(R.id.btn_go_home) ;
-        btn_minus = findViewById(R.id.product_adapter_btn_minus) ;
-        btn_plus = findViewById(R.id.product_adapter_btn_plus) ;
+        btn_go_home = findViewById(R.id.btn_go_home);
+        btn_minus = findViewById(R.id.product_adapter_btn_minus);
+        btn_plus = findViewById(R.id.product_adapter_btn_plus);
         tv_quantity_num = findViewById(R.id.product_adapter_tv_num);
-        tv_product_name=findViewById(R.id.product_detail_product_name) ;
-        tv_single_price=findViewById(R.id.product_adapter_single_price) ;
-        tv_total_price=findViewById(R.id.product_adapter_total_price) ;
-        tv_product_description=findViewById(R.id.product_adapter_description) ;
-        img_productImage = findViewById(R.id.product_apadter_img) ;
-        tv_product_payingType = findViewById(R.id.product_adapter_paying_type) ;
-        btn_buy = findViewById(R.id.product_adapter_btn_buy) ;
+        tv_product_name = findViewById(R.id.product_detail_product_name);
+        tv_single_price = findViewById(R.id.product_adapter_single_price);
+        tv_total_price = findViewById(R.id.product_adapter_total_price);
+        tv_product_description = findViewById(R.id.product_adapter_description);
+        img_productImage = findViewById(R.id.product_apadter_img);
+        tv_product_payingType = findViewById(R.id.product_adapter_paying_type);
+        btn_buy = findViewById(R.id.product_adapter_btn_buy);
 
         tv_quantity_num.setText(String.valueOf(1));
 
-        tst_buy_pressed = new Toast(getBaseContext()) ;
+        tst_buy_pressed = new Toast(getBaseContext());
 
-        mp_cash = MediaPlayer.create(this , R.raw.cashnew) ;
+        mp_cash = MediaPlayer.create(this, R.raw.cashnew);
 
+        SharedPreferences UsersPreferences = getSharedPreferences(Create_accountActivity.USERS_PREFERANCES, MODE_PRIVATE);
+        SharedPreferences DefultPrefrences = PreferenceManager.getDefaultSharedPreferences(this);
 
-        SharedPreferences UsersPreferences = getSharedPreferences(Create_accountActivity.USERS_PREFERANCES , MODE_PRIVATE) ;
-        SharedPreferences DefultPrefrences = PreferenceManager.getDefaultSharedPreferences(this) ;
+        db = new ProjectDatabase(getBaseContext());
 
-        db = new ProjectDatabase(getBaseContext()) ;
+        Intent ProductIntent = getIntent();
 
-        Intent ProductIntent = getIntent() ;
+        Product_db_obj obj = (Product_db_obj) ProductIntent.getSerializableExtra(SERIALIZABLE_KEY);
 
-        Product_db_obj obj = (Product_db_obj) ProductIntent.getSerializableExtra(SERIALIZABLE_KEY) ;
+        String product_name = obj.getProduct_name();
+        double product_price = obj.getProduct_price();
+        String product_uri = obj.getProduct_uri();
+        String product_description = obj.getProduct_description();
+        int product_payingType_int = obj.getProduct_paying_type();
 
-        String product_name = obj.getProduct_name() ;
-        double product_price = obj.getProduct_price() ;
-        String product_uri = obj.getProduct_uri() ;
-        String product_description = obj.getProduct_description() ;
-        int product_payingType_int = obj.getProduct_paying_type() ;
-
-        String payingType_string = null ;
+        String payingType_string = null;
         if (product_payingType_int == AddNew_ItemActivity.PAYING_CASH)
-            payingType_string = "كاش" ;
+            payingType_string = "كاش";
         else if (product_payingType_int == AddNew_ItemActivity.PAYING_INSTALLMENT)
-            payingType_string = "تقسيط" ;
+            payingType_string = "تقسيط";
 
         tv_product_name.setText(product_name);
-        tv_single_price.setText("سعر الوحدة  : "+product_price);
-        tv_total_price.setText("المجموع  : "+product_price);
+        tv_single_price.setText("سعر الوحدة  : " + product_price);
+        tv_total_price.setText("المجموع  : " + product_price);
         tv_product_payingType.setText("نوع الدفع : " + payingType_string);
         if (!product_description.equals(""))
-            tv_product_description.setText("الوصف : "+product_description);
+            tv_product_description.setText("الوصف : " + product_description);
         else
             tv_product_description.setText(R.string.no_description);
 
-        if(!TextUtils.isEmpty(product_uri)){
-            File f = new File(obj.getProduct_uri()) ;
-            if (f.exists()){
-                Bitmap bitmap = BitmapFactory.decodeFile(f.getAbsolutePath())  ;
+        if (!TextUtils.isEmpty(product_uri)) {
+            File f = new File(obj.getProduct_uri());
+            if (f.exists()) {
+                Bitmap bitmap = BitmapFactory.decodeFile(f.getAbsolutePath());
                 img_productImage.setImageBitmap(bitmap);
             }
-        }
-        else {
+        } else {
             img_productImage.setImageResource(R.drawable.ic_cloche);
         }
-
-
-
 
         btn_go_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent go_home = new Intent(getBaseContext() , MainActivity.class) ;
+                Intent go_home = new Intent(getBaseContext(), MainActivity.class);
                 startActivity(go_home);
             }
         });
@@ -130,63 +127,53 @@ public class Product_detailsActivity extends AppCompatActivity {
         btn_plus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                double unitPrice = product_price ;
-                double totalPrice ;
-                int num =  Integer.parseInt(tv_quantity_num.getText().toString()) ;
-                num++ ;
-                totalPrice = num*unitPrice ;
-                tv_quantity_num.setText(String.valueOf(num));
-                tv_total_price.setText("المجموع  : "+ (((int)(totalPrice*100.0))/100.0));
-
+                int num = Integer.parseInt(tv_quantity_num.getText().toString());
+                if (num < MAX_ORDER_QUANTITY) {
+                    num++;
+                    updateQuantityAndTotalPrice(num, product_price);
+                } else {
+                    Toast.makeText(getBaseContext(), "تم الوصول إلى الحد الأقصى للكمية", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
         btn_minus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                double unitPrice = product_price ;
-                double totalPrice ;
-                int num =  Integer.parseInt(tv_quantity_num.getText().toString()) ;
-                if (num>1){
-                    num-- ;
-                    totalPrice = num*unitPrice ;
-                    tv_quantity_num.setText(String.valueOf(num));
-                    tv_total_price.setText("المجموع  : "+ (((int)(totalPrice*100.0))/100.0));
-
-                }}
+                int num = Integer.parseInt(tv_quantity_num.getText().toString());
+                if (num > 1) {
+                    num--;
+                    updateQuantityAndTotalPrice(num, product_price);
+                }
+            }
         });
 
         btn_plus.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                double unitPrice = product_price ;
-                double totalPrice ;
-                int num =  Integer.parseInt(tv_quantity_num.getText().toString()) ;
-                num+=10 ;
-                tv_quantity_num.setText(String.valueOf(num));
-                totalPrice = num*unitPrice ;
-                totalPrice = (((int)(totalPrice*100.0))/100.0) ;
-                tv_total_price.setText("المجموع  : "+ totalPrice);
-                return true ;
+                int num = Integer.parseInt(tv_quantity_num.getText().toString());
+                if (num < MAX_ORDER_QUANTITY - 10) {
+                    num += 10;
+                } else {
+                    num = MAX_ORDER_QUANTITY;
+                    Toast.makeText(getBaseContext(), "تم الوصول إلى الحد الأقصى للكمية", Toast.LENGTH_SHORT).show();
+                }
+                updateQuantityAndTotalPrice(num, product_price);
+                return true;
             }
         });
 
         btn_minus.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                double unitPrice = product_price ;
-                double totalPrice ;
-                int num =  Integer.parseInt(tv_quantity_num.getText().toString()) ;
-                if (num>10){
-                    num-=10 ;
-                    tv_quantity_num.setText(String.valueOf(num));
-                    totalPrice = num*unitPrice ;
-                    tv_total_price.setText("المجموع  : "+ (((int)(totalPrice*100.0))/100.0));}
-                else{
-                    tv_quantity_num.setText(String.valueOf(1));
-                    tv_total_price.setText("المجموع  : "+unitPrice);
+                int num = Integer.parseInt(tv_quantity_num.getText().toString());
+                if (num > 10) {
+                    num -= 10;
+                } else {
+                    num = 1;
                 }
-                return true ;
+                updateQuantityAndTotalPrice(num, product_price);
+                return true;
             }
         });
 
@@ -194,37 +181,41 @@ public class Product_detailsActivity extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View v) {
+                int orderCount = Integer.parseInt(tv_quantity_num.getText().toString());
+                if (orderCount > MAX_ORDER_QUANTITY) {
+                    Toast.makeText(getBaseContext(), "لقد تجاوزت الحد الأقصى للطلبات", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
-                String sale_product_name = tv_product_name.getText().toString() ;
+                String sale_product_name = tv_product_name.getText().toString();
                 double sale_total_price = Double.parseDouble(tv_total_price.getText().toString().substring(10));
 
-                String time_minute = LocalTime.now().getMinute()+"" ;
-                if(time_minute.length()==1)
-                    time_minute = "0"+time_minute ;
+                String time_minute = LocalTime.now().getMinute() + "";
+                if (time_minute.length() == 1)
+                    time_minute = "0" + time_minute;
 
-                String sale_date_time = LocalDate.now()+" , "+ LocalTime.now().getHour() + ":" + time_minute ;
+                String sale_date_time = LocalDate.now() + " , " + LocalTime.now().getHour() + ":" + time_minute;
 
-                int sale_user_id = UsersPreferences.getInt(Sign_inActivity.SIGNED_USER_ID , 0) ;
+                int sale_user_id = UsersPreferences.getInt(Sign_inActivity.SIGNED_USER_ID, 0);
 
-                Sale_db_obj sale_obj = new Sale_db_obj(sale_product_name , sale_total_price , sale_date_time , sale_user_id) ;
+                Sale_db_obj sale_obj = new Sale_db_obj(sale_product_name, sale_total_price, sale_date_time, sale_user_id);
 
-                long i = db.insertSale(sale_obj) ;
+                long i = db.insertSale(sale_obj);
 
                 tst_buy_pressed.cancel();
 
-                if (i>-1)
-                { tst_buy_pressed = Toast.makeText(getBaseContext() , "تمت عملية الشراء بنجاح"  , Toast.LENGTH_LONG) ;
+                if (i > -1) {
+                    tst_buy_pressed = Toast.makeText(getBaseContext(), "تمت عملية الشراء بنجاح", Toast.LENGTH_LONG);
 
-                    if (DefultPrefrences.getBoolean(SittingActivity.APP_SOUNDS_KEY , false)){
+                    if (DefultPrefrences.getBoolean(SittingActivity.APP_SOUNDS_KEY, false)) {
                         //  mp_cash.pause();
-                        mp_cash.setVolume(0.15f , 0.15f);
-                        mp_cash.start();}
-                }
-                else
-                    tst_buy_pressed = Toast.makeText(getBaseContext() , "للأسف ،، فشلت عملية الشراء"  , Toast.LENGTH_LONG) ;
+                        mp_cash.setVolume(0.15f, 0.15f);
+                        mp_cash.start();
+                    }
+                } else
+                    tst_buy_pressed = Toast.makeText(getBaseContext(), "للأسف ،، فشلت عملية الشراء", Toast.LENGTH_LONG);
 
                 tst_buy_pressed.show();
-
             }
         });
     }
@@ -234,4 +225,12 @@ public class Product_detailsActivity extends AppCompatActivity {
         super.onPause();
         tst_buy_pressed.cancel();
     }
+
+    private void updateQuantityAndTotalPrice(int quantity, double unitPrice) {
+        double totalPrice = quantity * unitPrice;
+        tv_quantity_num.setText(String.valueOf(quantity));
+        tv_total_price.setText("المجموع  : " + (((int) (totalPrice * 100.0)) / 100.0));
+    }
 }
+
+

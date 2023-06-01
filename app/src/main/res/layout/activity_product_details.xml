@@ -72,7 +72,7 @@
         android:background="@drawable/adapter_img_background"
         android:scaleType="centerInside"
         android:padding="10dp"
-        android:src="@drawable/ic_pizza"
+        android:src="@drawable/ic_cloche"
         android:layout_marginTop="15dp"
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
