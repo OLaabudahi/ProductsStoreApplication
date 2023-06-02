@@ -49,7 +49,7 @@ public class Product_detailsActivity extends AppCompatActivity {
     public static MediaPlayer mp_cash;
     public static final String SERIALIZABLE_KEY = "serializable_key";
 
-    private static final int MAX_ORDER_QUANTITY = 20;
+    private static final int MAX_ORDER_QUANTITY = 30;
 
     @SuppressLint("SetTextI18n")
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
