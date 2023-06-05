@@ -72,3 +72,12 @@ public class AllSales_adapter extends RecyclerView.Adapter<AllSales_adapter.AllS
     }
 }
 
+//هذا الكود هو محول (Adapter) يتم استخدامه في صفحة All_salesActivity لعرض قائمة البيعات في RecyclerView. هنا هو شرح الكود:
+//
+//يتم تعريف المتغيرات والعناصر الرسومية المستخدمة في المحول مثل ArrayList ومؤشر الموضع الأخير وViewGroup.
+//يتم إنشاء محول AllSales_adapter وتمرير البيانات إليه في البناء.
+//يتم تعريف الدالة setData لتحديث بيانات البيع في المحول وإعادة ترتيب القائمة.
+//يتم تعريف الطريقة onCreateViewHolder لإنشاء ViewHolder الخاص بكل عنصر في القائمة. يتم استخدام تمثيل العنصر all_sales_custom_adapter.xml.
+//يتم تعريف الطريقة onBindViewHolder لربط بيانات البيع بعنصر ViewHolder. يتم تحديد التأثيرات البصرية لعناصر القائمة عند التمرير.
+//يتم تعريف الطريقة getItemCount لإعادة عدد عناصر البيع المعروضة في القائمة.
+//يتم تعريف فئة AllSalesViewHolder كفئة مدمجة (nested class) تحتوي على عناصر واجهة المستخدم لعنصر واحد في القائمة.

@@ -1,4 +1,5 @@
 package ucas.edu.android.productsstoreapplication;
+
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -170,3 +171,26 @@ public class SittingActivity extends AppCompatActivity {
         finish();
     }
 }
+//هذا هو الكود لنشاط SittingActivity الذي يمثل شاشة إعدادات التطبيق. دعونا نشرحها:
+//
+//المتغيرات:
+//
+//recyclerView: عنصر RecyclerView المستخدم لعرض قائمة الإعدادات.
+//sitting_btn_sign_out: زر تسجيل الخروج.
+//btn_go_home: زر العودة إلى الصفحة الرئيسية.
+//account_img: صورة حساب المستخدم.
+//tv_user_fullname: عنصر TextView لعرض اسم المستخدم.
+//tv_user_isAdmin: عنصر TextView لعرض نوع الحساب (مسؤول أو عادي).
+//cb_soundeffect: مربع اختيار لتمكين أو تعطيل تأثيرات الصوت في التطبيق.
+//recycler_position: متغير لتتبع موضع العنصر المحدد في RecyclerView.
+//layoutAnimationController: كائن لتحديد تأثيرات الرسوم المتحركة عند عرض قائمة الإعدادات.
+//دالة onCreate():
+//
+//تقوم بتهيئة الواجهة الخاصة بالنشاط وتعيين المستخدمين الافتراضيين.
+//تقوم بتهيئة RecyclerView وتعيين محول العرض (adapter) ومدير العرض (layout manager).
+//تعيين البيانات في RecyclerView وتطبيق تأثيرات الرسوم المتحركة.
+//تعيين مستمعي النقر لزر تسجيل الخروج وزر العودة إلى الصفحة الرئيسية ومربع الاختيار لتأثيرات الصوت.
+//دالة onBackPressed():
+//
+//تعيين السلوك عند النقر على زر العودة للعودة إلى الصفحة الرئيسية.
+//يتضمن هذا النشاط أيضًا استخدام SharedPreferences للوصول إلى إعدادات التطبيق المحفوظة، مثل حالة صوت التطبيق وصورة حساب المستخدم.

@@ -209,4 +209,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 }
-
+//الشيفرة التي قمت بمشاركتها هي نشاط MainActivity في تطبيق Android. دعونا نشرح بعض الأجزاء الرئيسية في هذا النشاط:
+//
+//دالة onCreate():
+//تُستدعى عند إنشاء النشاط.
+//تُعيِّن محتوى العرض باستخدام setContentView().
+//تُبني RecyclerView وتعيين محول Main_adapter ومدير تخطيط GridLayoutManager لعرض العناصر في شبكة من عمودين.
+//تُعيِّن مستمع النقر لزر الإعدادات (main_btn_sitting) لفتح النشاط SittingActivity.
+//تُعيِّن مستمع الحدث لـ EditText (et_search) للبحث عن المنتجات استنادًا إلى النص المدخل ونوع الدفع المحدد (Cash أو Installments).
+//تُعيِّن مستمع النقر لأزرار الدفع (rb_cash و rb_in_installments) لتحديد نوع الدفع وتحديث عرض المنتجات استنادًا

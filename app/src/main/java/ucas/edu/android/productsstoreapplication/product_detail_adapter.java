@@ -55,4 +55,28 @@ public class product_detail_adapter extends RecyclerView.Adapter<product_detail_
         }
     }
 }
-
+//الشيفرة التي قمت بمشاركتها هي محول RecyclerView بإسم product_detail_adapter في تطبيق Android. يتم استخدام هذا المحول لعرض تفاصيل المنتج في قائمة RecyclerView.
+//
+//دعونا نشرح بعض الأجزاء الرئيسية في هذا المحول:
+//
+//المتغيرات:
+//
+//data: ArrayList من product_detail_object، يحتوي على بيانات تفاصيل المنتجات التي ستعرض في القائمة.
+//viewGroup: ViewGroup تستخدم لتحديد العنصر الأب الذي سيتم إنشاء عناصر القائمة فيه.
+//onCreateViewHolder:
+//
+//يقوم بإنشاء ViewHolder عند الحاجة. يتم تكوين العرض الذي يُعرض فيه تفاصيل المنتج باستخدام LayoutInflater و R.layout.adapter_product_details.
+//يتم إنشاء وإرجاع Detail_viewHolder لتمثيل العنصر الفردي في القائمة.
+//onBindViewHolder:
+//
+//يقوم بتعيين البيانات في ViewHolder. يتم الوصول إلى عنصر المصفوفة المناسب في data باستخدام position وتعيين القيم المناسبة لعناصر واجهة المستخدم في holder.
+//getItemCount:
+//
+//يُرجع عدد عناصر القائمة. في هذه الحالة، يُرجع حجم data.
+//Detail_viewHolder:
+//
+//يمثل ViewHolder لعنصر فردي في قائمة التفاصيل.
+//يتم تعيين العناصر واجهة المستخدم المناسبة باستخدام findViewById في itemView الممررة إلى البناء الأساسي لـ ViewHolder.
+//يُستخدم هذا المحول لعرض تفاصيل المنتجات في قائمة RecyclerView. يمكنك استخدامه مع product_detail_object لتعريف بيانات التفاصيل وعرضها في واجهة المستخدم باستخدام TextViews أو أي عناصر واجهة مخصصة أخرى.
+//
+//إذا كان لديك أي أسئلة أخرى أو تحتاج إلى شرح أوضح لجزء معين، فلا تتردد في طرح المزيد من الأسئلة.
